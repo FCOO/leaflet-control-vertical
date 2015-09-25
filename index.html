@@ -20,11 +20,11 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
         }).addTo(map);
         var myLevels = [ 0, 1, 2, 3, 5];
-        var onChange = function(evt) {
-            var index = this.selectedIndex;
-            var value = $(this).val();
-            $('#info').html('Selected index ' + index + ' with value ' + value);
-        }
+        map.on('levelchange', function (evt){
+            //var index = this.selectedIndex;
+            //var value = $(this).val();
+            //$('#info').html('Selected index ' + index + ' with value ' + value);
+        });
         map.addControl(new L.Control.Vertical({title: 'Vertical Selector',
                                                units: 'm',
                                                levels: myLevels,

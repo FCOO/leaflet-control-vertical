@@ -12,7 +12,6 @@ L.Control.Vertical = L.Control.extend({
         levels: [],
         initialLevelIndex: 0,
         units: null,
-        onChange: function(){},
         position: 'bottomleft',
         visibility: 'visible',
     },
@@ -28,13 +27,36 @@ L.Control.Vertical = L.Control.extend({
     },
 
     onAdd: function(map) {
+        var that = this;
         this._map = map;
+
+        // Trigger change event to initialize layers
+        $(this._selectList).trigger("change");
+
+        // We want to trigger a change event when a new layer is added
+        map.on("layeradd", function(data) {
+            if (data.layer.levels !== undefined) {
+                $(that._selectList).trigger("change");
+            }
+        });
+
         return this._container;
     },
 
     onRemove: function(map) {
         this._container.style.display = 'none';
         this._map = null;
+    },
+
+    onChange: function(evt, ee){
+        var map = this._instance._map;
+        if (map) {
+            var data = {
+                index: this.selectedIndex,
+                value: $(this).val()
+            }
+            map.fire('levelchange', data);
+        }
     },
 
     _createVerticalSelector: function(container) {
@@ -48,6 +70,7 @@ L.Control.Vertical = L.Control.extend({
         // Create select element
         var selectList = L.DomUtil.create('select', 'leaflet-control-vertical-select', container);
         selectList._instance = this;
+        this._selectList = selectList;
         $.each(this.options.levels, function ( index, value ) {
             var option = document.createElement("option");
             option.value = value;
@@ -59,13 +82,10 @@ L.Control.Vertical = L.Control.extend({
         });
 
         // Add event listener
-        $(selectList).on("change", this.options.onChange);
+        $(selectList).on("change", this.onChange);
 
         // Set initial value
         selectList.selectedIndex = this.options.initialLevelIndex;
-
-        // Trigger event
-        $(selectList).trigger("change");
     }
 });
 

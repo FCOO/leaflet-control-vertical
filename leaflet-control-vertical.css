@@ -1,5 +1,6 @@
 .leaflet-control-vertical {
     background-color: white;
+    color: #333;
     padding: 2px;
     border: 1px solid darkgray;
     text-align: left;
