@@ -1,0 +1,14 @@
+.leaflet-control-vertical {
+    background-color: white;
+    padding: 2px;
+    border: 1px solid darkgray;
+    text-align: left;
+}
+
+.leaflet-control-vertical-title {
+	font-size: larger;
+	font-weight: bold;
+	display: block;
+	position: relative;
+}
+
