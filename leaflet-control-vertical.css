@@ -4,12 +4,19 @@
     padding: 2px;
     border: 1px solid darkgray;
     text-align: left;
+    display: block;
 }
 
-.leaflet-control-vertical-title {
+div.leaflet-control-vertical-title {
 	font-size: larger;
 	font-weight: bold;
-	display: block;
+    display: none;
 	position: relative;
+}
+
+@media screen and (min-width: 641px) and (min-height: 641px) {
+    div.leaflet-control-vertical-title {
+        display: block;
+    }
 }
 
