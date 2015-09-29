@@ -24,6 +24,7 @@ L.Control.Vertical = L.Control.extend({
         }
         L.DomEvent.disableClickPropagation(this._container);
         this._createVerticalSelector(this._container);
+        this._vertical_layers = 0;
     },
 
     onAdd: function(map) {
@@ -34,12 +35,23 @@ L.Control.Vertical = L.Control.extend({
         $(this._selectList).trigger("change");
 
         // We want to trigger a change event when a new layer is added
+        // and we also want to make the selector visible
         map.on("layeradd", function(data) {
             if (data.layer.levels !== undefined) {
+                that._vertical_layers += 1;
+                $(that._container).css("visibility", 'visible');
                 $(that._selectList).trigger("change");
             }
         });
-
+        // Make the selector hidden if there are no vertical layers on map
+        map.on("layerremove", function(data) {
+            if (data.layer.levels !== undefined) {
+                that._vertical_layers -= 1;
+                if (that._vertical_layers === 0) {
+                    $(that._container).css("visibility", 'hidden');
+                }
+            }
+        });
         return this._container;
     },
 
