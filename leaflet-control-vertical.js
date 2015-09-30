@@ -20,7 +20,8 @@ L.Control.Vertical = L.Control.extend({
         L.Util.setOptions(this, options);
         this._container = L.DomUtil.create('div', 'leaflet-control leaflet-control-vertical');
         if (this.options.visibility == 'hidden') {
-            $(this._container).css("visibility", this.options.visibility);
+            $(this._container).hide();
+            $(this._container).css("visibility", 'hidden');
         }
         L.DomEvent.disableClickPropagation(this._container);
         this._createVerticalSelector(this._container);
@@ -39,6 +40,7 @@ L.Control.Vertical = L.Control.extend({
         map.on("layeradd", function(data) {
             if (data.layer.levels !== undefined) {
                 that._vertical_layers += 1;
+                $(that._container).show();
                 $(that._container).css("visibility", 'visible');
                 $(that._selectList).trigger("change");
             }
@@ -48,6 +50,7 @@ L.Control.Vertical = L.Control.extend({
             if (data.layer.levels !== undefined) {
                 that._vertical_layers -= 1;
                 if (that._vertical_layers === 0) {
+                    $(that._container).hide();
                     $(that._container).css("visibility", 'hidden');
                 }
             }
