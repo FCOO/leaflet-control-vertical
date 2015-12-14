@@ -89,10 +89,11 @@ L.Control.Vertical = L.Control.extend({
         $.each(this.options.levels, function ( index, value ) {
             var option = document.createElement("option");
             option.value = value;
-            option.text = value;
+            var text = value;
             if (that.options.units !== null) {
-                option.text +=  ' ' + that.options.units;
+                text +=  ' ' + that.options.units;
             }
+            $(option).text(text);
             selectList.appendChild(option);
         });
 
