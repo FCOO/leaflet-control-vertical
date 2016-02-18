@@ -1,6 +1,6 @@
 {
-  "name"		: "leaflet-control-vertical",
-  "version"	: "0.0.0",
+  "name": "leaflet-control-vertical",
+  "version": "1.0.0",
   "homepage": "https://github.com/FCOO/leaflet-control-vertical",
   "authors": [
     "Jesper Hansen jla@fcoo.dk"
@@ -10,24 +10,20 @@
     "dist/leaflet-control-vertical.min.js",
     "dist/leaflet-control-vertical.min.css"
   ],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/FCOO/leaflet-control-vertical.git"
-	},
-
-	"dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FCOO/leaflet-control-vertical.git"
+  },
+  "dependencies": {
     "leaflet": "latest",
     "jquery": "~1"
-	},
-
-	"devDependencies": {
-    "bourbon": "latest",
-		"modernizr-mixin": "latest",
-		"mathsass": "latest"
   },
-	
-	"license": "MIT",
-
+  "devDependencies": {
+    "bourbon": "latest",
+    "modernizr-mixin": "latest",
+    "mathsass": "latest"
+  },
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
