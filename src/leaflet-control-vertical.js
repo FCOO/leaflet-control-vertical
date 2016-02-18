@@ -1,12 +1,25 @@
-/**
- * Adds a vertical selector to Leaflet based maps.
- **/
-if (console === undefined) {
-    this.console = { log: function (msg) { /* do nothing since it would otherwise break IE */} };
-}
+/****************************************************************************
+	leaflet-control-vertical.js, 
 
-L.Control.Vertical = L.Control.extend({
+	(c) 2016, FCOO
+
+	https://github.com/FCOO/leaflet-control-vertical
+	https://github.com/FCOO
+
+****************************************************************************/
+;(function ($, L, window, document, undefined) {
+	"use strict";
+
+	/**
+	 * Adds a vertical selector to Leaflet based maps.
+	 **/
+	if (console === undefined) {
+		this.console = { log: function ( /*msg*/ ) { /* do nothing since it would otherwise break IE */} };
+	}
+
+	L.Control.Vertical = L.Control.extend({
     options: {
+				VERSION: "{VERSION}",
         title: null,
         language: null,
         levels: [],
@@ -58,18 +71,18 @@ L.Control.Vertical = L.Control.extend({
         return this._container;
     },
 
-    onRemove: function(map) {
+    onRemove: function( /*map*/ ) {
         this._container.style.display = 'none';
         this._map = null;
     },
 
-    onChange: function(evt, ee){
+    onChange: function(/*evt, ee*/){
         var map = this._instance._map;
         if (map) {
             var data = {
                 index: this.selectedIndex,
                 value: $(this).val()
-            }
+            };
             map.fire('levelchange', data);
         }
     },
@@ -103,6 +116,11 @@ L.Control.Vertical = L.Control.extend({
         // Set initial value
         selectList.selectedIndex = this.options.initialLevelIndex;
     }
-});
+	});
 
-L.Control.vertical = function(options) { return new L.Control.Vertical(options); };
+	L.Control.vertical = function(options) { return new L.Control.Vertical(options); };
+
+}(jQuery, L, this, document));
+
+
+

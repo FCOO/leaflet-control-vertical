@@ -1,3 +1,16 @@
+/***********************************************
+	leaflet-control-vertical.scss, 
+
+	(c) 2016, FCOO
+
+	https://github.com/FCOO/leaflet-control-vertical
+	https://github.com/FCOO
+
+
+************************************************/
+//BOURBON - http://bourbon.io/
+@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
+
 .leaflet-control-vertical {
     background-color: white;
     color: #333;
@@ -19,4 +32,6 @@ div.leaflet-control-vertical-title {
         display: block;
     }
 }
+
+
 
