@@ -1,25 +1,25 @@
 /****************************************************************************
-	leaflet-control-vertical.js, 
+    leaflet-control-vertical.js, 
 
-	(c) 2016, FCOO
+    (c) 2016, FCOO
 
-	https://github.com/FCOO/leaflet-control-vertical
-	https://github.com/FCOO
+    https://github.com/FCOO/leaflet-control-vertical
+    https://github.com/FCOO
 
 ****************************************************************************/
-;(function ($, L, window, document, undefined) {
-	"use strict";
+(function ($, L, window, document, undefined) {
+    "use strict";
 
-	/**
-	 * Adds a vertical selector to Leaflet based maps.
-	 **/
-	if (console === undefined) {
-		this.console = { log: function ( /*msg*/ ) { /* do nothing since it would otherwise break IE */} };
-	}
+    /**
+     * Adds a vertical selector to Leaflet based maps.
+     **/
+    if (console === undefined) {
+        this.console = { log: function ( /*msg*/ ) { /* do nothing since it would otherwise break IE */} };
+    }
 
-	L.Control.Vertical = L.Control.extend({
+    L.Control.Vertical = L.Control.extend({
     options: {
-				VERSION: "0.1.0",
+                VERSION: "0.1.1",
         title: null,
         language: null,
         levels: [],
@@ -116,9 +116,9 @@
         // Set initial value
         selectList.selectedIndex = this.options.initialLevelIndex;
     }
-	});
+    });
 
-	L.Control.vertical = function(options) { return new L.Control.Vertical(options); };
+    L.Control.vertical = function(options) { return new L.Control.Vertical(options); };
 
 }(jQuery, L, this, document));
 
