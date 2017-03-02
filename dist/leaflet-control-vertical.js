@@ -19,7 +19,7 @@
 
     L.Control.Vertical = L.Control.extend({
     options: {
-                VERSION: "0.1.1",
+                VERSION: "1.1.2",
         title: null,
         language: null,
         levels: [],
