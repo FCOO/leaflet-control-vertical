@@ -19,9 +19,8 @@
 
     L.Control.Vertical = L.Control.extend({
     options: {
-                VERSION: "1.1.3",
-        title: null,
-        language: null,
+        VERSION: "2.0.0",
+        title: '',
         levels: [],
         initialLevelIndex: 0,
         units: null,
@@ -42,7 +41,7 @@
     },
 
     onAdd: function(map) {
-        var that = this;
+        var _this = this;
         this._map = map;
 
         // Trigger change event to initialize layers
@@ -52,19 +51,19 @@
         // and we also want to make the selector visible
         map.on("layeradd", function(data) {
             if (data.layer.levels !== undefined) {
-                that._vertical_layers += 1;
-                $(that._container).show();
-                $(that._container).css("visibility", 'visible');
-                $(that._selectList).trigger("change");
+                _this._vertical_layers += 1;
+                $(_this._container).show();
+                $(_this._container).css("visibility", 'visible');
+                $(_this._selectList).trigger("change");
             }
         });
         // Make the selector hidden if there are no vertical layers on map
         map.on("layerremove", function(data) {
             if (data.layer.levels !== undefined) {
-                that._vertical_layers -= 1;
-                if (that._vertical_layers === 0) {
-                    $(that._container).hide();
-                    $(that._container).css("visibility", 'hidden');
+                _this._vertical_layers -= 1;
+                if (_this._vertical_layers === 0) {
+                    $(_this._container).hide();
+                    $(_this._container).css("visibility", 'hidden');
                 }
             }
         });
@@ -88,13 +87,19 @@
     },
 
     _createVerticalSelector: function(container) {
-        var that = this;
+        var _this = this;
         // Add title div
-        if (this.options.title) {
+        if (this.options.title) 
+            $('<div/>')
+                .addClass('leaflet-control-vertical-title')
+                .i18n( this.options.title )
+                .appendTo( container );
+/*
+        {
             var titleDiv = L.DomUtil.create('div', 'leaflet-control-vertical-title', container);
             titleDiv.innerHTML = this.options.title;
         }
-
+*/
         // Create select element
         var selectList = L.DomUtil.create('select', 'leaflet-control-vertical-select', container);
         selectList._instance = this;
@@ -103,8 +108,8 @@
             var option = document.createElement("option");
             option.value = value;
             var text = value;
-            if (that.options.units !== null) {
-                text +=  ' ' + that.options.units;
+            if (_this.options.units !== null) {
+                text +=  ' ' + _this.options.units;
             }
             $(option).text(text);
             selectList.appendChild(option);
